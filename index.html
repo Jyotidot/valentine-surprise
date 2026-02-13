@@ -169,7 +169,7 @@
     <!-- PAGE 3 -->
     <div id="page3" class="page">
         <div class="card">
-            <h2>It is better for you 😄❤️</h2>
+            <h2>It is better for you 😆😄❤️</h2>
             <button onclick="openPage4()">Next ❤️</button>
         </div>
     </div>
@@ -178,7 +178,8 @@
     <div id="page4" class="page">
         <div class="card">
             <h2>
-                💕 You are not just my husband, you are strength, and my biggest blessing ❤️
+                💕 You are not just my husband,
+                you are strength, and my biggest blessing ❤️
                 Thank you for loving me the way you do.
                 Happy Valentine’s Day my forever love 💕
             </h2>
@@ -199,7 +200,7 @@
         function openPage2() {
             document.getElementById('page1').classList.remove('active');
             document.getElementById('page2').classList.add('active');
-            document.getElementById('bgMusic').play();
+            // document.getElementById('bgMusic').play();
         }
 
         function openPage3() {
@@ -211,7 +212,7 @@
             document.getElementById('page3').classList.remove('active');
             document.getElementById('page4').classList.add('active');
 
-            const url = "https://jyotidot.github.io/valentine-surprise/";
+            const url = "https://jyotidot.github.io/valentine-surprise/#slideshow";
             new QRCode(document.getElementById('qrcode'), { text: url, width: 180, height: 180 });
         }
 
@@ -229,6 +230,9 @@
         }
 
         function startSlideshow() {
+            document.querySelectorAll('.page')
+                .forEach(p => p.classList.remove('active'));
+
             document.getElementById('page5').classList.add('active');
             document.getElementById('slideMusic').play();
 
@@ -275,6 +279,14 @@
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 7000);
         }, 600);
+
+        window.onload = function () {
+            if (window.location.hash === "#slideshow") {
+                document.querySelectorAll('.page')
+                    .forEach(p => p.classList.remove('active'));
+                startSlideshow();
+            }
+        };
     </script>
 
 </body>
