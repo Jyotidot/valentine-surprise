@@ -228,7 +228,12 @@
                 .forEach(p => p.classList.remove('active'));
 
             document.getElementById('page5').classList.add('active');
-            document.getElementById('slideMusic').play();
+
+            const music = document.getElementById('slideMusic');
+            music.currentTime = 0;
+            music.play().catch(() => {
+                document.body.addEventListener('click', () => music.play(), { once: true });
+            });
 
             let index = 0;
             const img = document.getElementById("slideImg");
@@ -236,7 +241,8 @@
             setInterval(() => {
                 index = (index + 1) % images.length;
                 img.src = images[index];
-            }, 1500);
+            }, 700);  // 👈 change timing here
+
         }
 
 
