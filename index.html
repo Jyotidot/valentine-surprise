@@ -2,18 +2,35 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine Surprise ❤️</title>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            background: linear-gradient(270deg, #ff758c, #ff7eb3, #ff4d6d);
+            background-size: 600% 600%;
+            animation: bgMove 10s ease infinite;
             overflow: hidden;
             color: white;
+        }
+
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                background-position: 0% 50%
+            }
         }
 
         .page {
@@ -30,6 +47,14 @@
             display: flex;
         }
 
+        .card {
+            background: rgba(255, 255, 255, .15);
+            padding: 40px 30px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, .25);
+        }
+
         button {
             padding: 14px 32px;
             border: none;
@@ -40,14 +65,20 @@
             background: white;
             color: #ff4d6d;
             font-weight: bold;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
             transition: .3s;
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
         }
 
         button:hover {
             transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, .7);
         }
 
+        /* NO button */
         #no {
             position: fixed;
             left: 60%;
@@ -58,63 +89,14 @@
             z-index: 9999;
         }
 
-        #page2 {
-            position: relative;
-        }
-
-        #slideImg {
-            transition: opacity 1s;
-        }
-
-
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 40px 30px;
-            border-radius: 25px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
-        }
-
-        #qrcode {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
         /* slideshow */
-        #slideshow img {
+        #slideImg {
             max-width: 90vw;
             max-height: 70vh;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+            transition: opacity 1s ease, transform 3s ease;
         }
-
-        #no:hover {
-            animation: shake 0.2s;
-        }
-
-        @keyframes shake {
-            0% {
-                transform: translateX(0)
-            }
-
-            25% {
-                transform: translateX(-5px)
-            }
-
-            50% {
-                transform: translateX(5px)
-            }
-
-            75% {
-                transform: translateX(-5px)
-            }
-
-            100% {
-                transform: translateX(0)
-            }
-        }
-
 
         /* floating hearts */
         .heart {
@@ -139,9 +121,7 @@
 </head>
 
 <body>
-    <audio id="bgMusic" loop autoplay muted>
-        <source src="images/romantic.mp3" type="audio/mpeg">
-    </audio>
+
     <audio id="slideMusic" loop>
         <source src="images/romantic.mp3" type="audio/mpeg">
     </audio>
@@ -167,8 +147,8 @@
     <!-- PAGE 3 -->
     <div id="page3" class="page">
         <div class="card">
-            <h2>It is better for you 😆😄❤️</h2>
-            <button onclick="openPage4()">Next ❤️</button>
+            <h2>It is better for you 😆❤️</h2>
+            <button onclick="openPage4()">Go to Next Surprise ❤️</button>
         </div>
     </div>
 
@@ -176,12 +156,12 @@
     <div id="page4" class="page">
         <div class="card">
             <h2>
-                💕 You are not just my husband,
-                you are strength, and my biggest blessing ❤️
-                Thank you for loving me the way you do.
+                💕 You are not just my husband,<br>
+                you are strength, and my biggest blessing ❤️<br>
+                Thank you for loving me the way you do.<br>
                 Happy Valentine’s Day my forever love 💕
             </h2>
-            <p>Scan QR for our memories 📷</p>
+            <p>Scan QR for memories 📷</p>
             <div id="qrcode"></div>
         </div>
     </div>
@@ -189,92 +169,98 @@
     <!-- PAGE 5 SLIDESHOW -->
     <div id="page5" class="page">
         <h2>Our Beautiful Memories ❤️</h2>
-        <div id="slideshow">
-            <img id="slideImg" src="https://drive.google.com/uc?export=view&id=1WFU9dlp0fH2n8TjUxEYvvDyvR7mnwEMF" />
-        </div>
+        <img id="slideImg">
     </div>
 
     <script>
+
         function openPage2() {
-            document.getElementById('page1').classList.remove('active');
-            document.getElementById('page2').classList.add('active');
+            page1.classList.remove('active');
+            page2.classList.add('active');
         }
 
         function openPage3() {
-            document.getElementById('page2').classList.remove('active');
-            document.getElementById('page3').classList.add('active');
+            page2.classList.remove('active');
+            page3.classList.add('active');
         }
 
         function openPage4() {
-            document.getElementById('page3').classList.remove('active');
-            document.getElementById('page4').classList.add('active');
+            page3.classList.remove('active');
+            page4.classList.add('active');
 
             const url = "https://jyotidot.github.io/valentine-surprise/#slideshow";
-            new QRCode(document.getElementById('qrcode'), { text: url, width: 180, height: 180 });
+            new QRCode(document.getElementById('qrcode'),
+                { text: url, width: 180, height: 180 });
         }
 
+        /* NO button always inside screen */
         function moveNo() {
             const btn = document.getElementById("no");
-
-            // Random percentage position
-            const x = Math.random() * 80 + 5;
-            const y = Math.random() * 70 + 10;
-
-            btn.style.position = "fixed";
+            const x = Math.random() * 80 + 10;
+            const y = Math.random() * 70 + 15;
             btn.style.left = x + "%";
             btn.style.top = y + "%";
-            btn.style.transform = "translate(-50%, -50%)";
         }
 
-        function startSlideshow() {
-            document.querySelectorAll('.page')
-                .forEach(p => p.classList.remove('active'));
-
-            document.getElementById('page5').classList.add('active');
-            document.getElementById('bgMusic').play();
-
-            const music = document.getElementById('slideMusic');
-            music.currentTime = 0;
-            music.play().catch(() => {
-                document.body.addEventListener('click', () => music.play(), { once: true });
-            });
-
-            let index = 0;
-            const img = document.getElementById("slideImg");
-
-            setInterval(() => {
-                index = (index + 1) % images.length;
-                img.src = images[index];
-            }, 400);  // 👈 change timing here
-
-        }
-
-
-        /* slideshow images — replace with YOUR photos */
+        /* slideshow */
         const images = [
             'images/Image1.jpg',
             'images/Image2.jpg',
             'images/Image3.jpg',
             'images/Image4.jpg',
             'images/Image5.jpg',
-            'images/Image6.jpg',
-            'images/Image7.jpg',
-            'images/Image8.jpg',
-            'images/Image10.jpg',
-            'images/Image11.jpg',
-            'images/Image12.jpg',
-            'images/Image13.jpg',
-            'images/Image14.jpg',
-            'images/Image15.jpg',
-            'images/Image16.jpg',
-            'images/Image17.jpg',
-            'images/Image18.jpg',
-            'images/Image19.jpg',
-            'images/Image20.jpg',
-            'images/Image21.jpg'
+            'images/Image6.jpg'
         ];
 
-        /* hearts */
+        function startSlideshow() {
+
+            document.querySelectorAll('.page')
+                .forEach(p => p.classList.remove('active'));
+
+            page5.classList.add('active');
+
+            const music = document.getElementById('slideMusic');
+            music.play().catch(() => { });
+
+            let index = 0;
+            const img = document.getElementById("slideImg");
+            img.src = images[0];
+
+            setInterval(() => {
+                img.style.opacity = 0;
+
+                setTimeout(() => {
+                    index = (index + 1) % images.length;
+                    img.src = images[index];
+                    img.style.opacity = 1;
+                    img.style.transform = "scale(1.05)";
+                }, 500);
+
+            }, 2000);
+
+            /* heart burst */
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+
+        /* autoplay fix */
+        document.body.addEventListener("click", () => {
+            slideMusic.play().catch(() => { });
+        }, { once: true });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            if (window.location.hash === "#slideshow") {
+                startSlideshow();
+            }
+        });
+
+        /* floating hearts always */
         setInterval(() => {
             const heart = document.createElement('div');
             heart.className = 'heart';
@@ -284,13 +270,6 @@
             setTimeout(() => heart.remove(), 7000);
         }, 600);
 
-        window.onload = function () {
-            if (window.location.hash === "#slideshow") {
-                document.querySelectorAll('.page')
-                    .forEach(p => p.classList.remove('active'));
-                startSlideshow();
-            }
-        };
     </script>
 
 </body>
