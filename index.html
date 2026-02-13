@@ -208,7 +208,7 @@
             document.getElementById('page3').classList.remove('active');
             document.getElementById('page4').classList.add('active');
 
-            const url = "https://jyotidot.github.io/valentine-surprise/#slideshow";
+            const url = "https://jyotidot.github.io/valentine-surprise/";
             new QRCode(document.getElementById('qrcode'), { text: url, width: 180, height: 180 });
         }
 
@@ -243,21 +243,25 @@
         const images = [
             'images/Image1.jpg',
             'images/Image2.jpg',
-            'images/Image3.jpg'
+            'images/Image3.jpg',
+            'images/Image4.jpg',
+            'images/Image5.jpg',
+            'images/Image6.jpg',
+            'images/Image7.jpg',
+            'images/Image8.jpg',
+            'images/Image10.jpg',
+            'images/Image11.jpg',
+            'images/Image12.jpg',
+            'images/Image13.jpg',
+            'images/Image14.jpg',
+            'images/Image15.jpg',
+            'images/Image16.jpg',
+            'images/Image17.jpg',
+            'images/Image18.jpg',
+            'images/Image19.jpg',
+            'images/Image20.jpg',
+            'images/Image21.jpg'
         ];
-
-        window.addEventListener("load", () => {
-            if (window.location.hash === "#slideshow") {
-                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                startSlideshow();
-            }
-        });
-        window.onload = function () {
-            if (window.location.hash.includes("slideshow")) {
-                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                startSlideshow();
-            }
-        };
 
         /* hearts */
         setInterval(() => {
